@@ -1,4 +1,13 @@
 # 검색 (Trie)
+- [검색 (Trie)](#검색-trie)
+  - [개요](#개요)
+  - [기능](#기능)
+  - [API](#api)
+    - [Trie](#trie)
+    - [Trie.TrieSettings](#trietriesettings)
+  - [사용 예시](#사용-예시)
+  - [제약 사항](#제약-사항)
+
 ## 개요
 Trie기반 문자열 검색 도구
 ## 기능

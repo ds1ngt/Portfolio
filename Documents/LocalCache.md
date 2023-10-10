@@ -1,17 +1,40 @@
 # 로컬 캐시
+- [로컬 캐시](#로컬-캐시)
+  - [개요](#개요)
+  - [기능](#기능)
+    - [캐시 로드](#캐시-로드)
+    - [관리](#관리)
+  - [API](#api)
+    - [Static API](#static-api)
+    - [eCacheType](#ecachetype)
+    - [Request API](#request-api)
+    - [Callbacks](#callbacks)
+      - [Delegates](#delegates)
+      - [Callbacks](#callbacks-1)
+  - [사용 예시](#사용-예시)
+  - [텍스쳐 캐시 연동](#텍스쳐-캐시-연동)
+
 ## 개요
 다운로드 받은 파일을 클라이언트 장비에 임시로 캐싱
 
 ## 기능
-- 동일 URL에 다운로드 요청 시, 한 번만 다운로드 하도록 처리
-- bytes[] 및 Texture2D 로드 지원
-- 캐시파일 관리 및 무결성 검사
-- 메모리 관리 (C# ArrayPool 사용)
+### 캐시 로드
+- bytes[] 및 Texture2D 로드 지원  
+캐싱된 파일을 byte 배열로 읽도록 하거나 Unity Texture2D로 변환해서 직접 사용할 수 있도록 합니다.
+### 관리
+- 동일 URL에 다운로드 요청 시, 한 번만 다운로드 하도록 처리  
+다운로드 요청 URL과 동일한 주소의 다운로드가 진행중일 경우 다운로드 결과를 응답받는 이벤트를 등록하고, 기존 다운로드 완료시 이벤트를 호출합니다. (동일 다운로드 요청에 대한 우회처리)
+- 동시 다운로드 제한  
+한 번에 동시에 진행되는 다운로드의 수를 제한하고 초과되는 요청은 큐로 관리됩니다.
+- 캐시파일 관리 및 무결성 검사  
+다운로드 URL 및 저장된 파일의 크기를 별도로 관리하고 실제 캐싱된 파일과 일치하는지 검사합니다.  
+무결성을 통과하지 못 하는 경우 캐싱된 파일을 삭제하고 새로 다운로드 받습니다.
+- 메모리 관리 (C# ArrayPool 사용)  
+캐시 파일을 위한 메모리 할당 대신 .NET ArrayPool을 통해 관리합니다.
 ## API
-네임스페이스 : LocalCache
+소스코드 전문을 공개할 수 없어 작성된 Public API로 내용을 대체합니다.
 
 ### Static API
-클래스명 : Cache
 
 API | 용도
 --- | ---
@@ -32,7 +55,6 @@ void **PrintInfo**() | 캐시 정보 출력
 DEFAULT | 기본 캐시 타입
 
 ### Request API
-클래스명 : Cache.Request
 
 API | 용도
 --- | ---
@@ -44,7 +66,6 @@ UniTask<byte[]> **LoadBytesAsync**() | 비동기 다운로드 (byte[])
 UniTask<Texture2D> **LoadTexture2DAsync**() | 비동기 다운로드 (Texture2D)
 
 ### Callbacks
-클래스명 : Callbacks
 
 #### Delegates
 이름 | 파라미터 설명
