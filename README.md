@@ -1,5 +1,8 @@
 # Portfolio
 [이력서 (Notion)](https://www.notion.so/389e72467b7041cf9a29a2f51f7ec245?showMoveTo=true&saveParent=true)
+## GitHub
+- [검색 (Trie)](https://github.com/ds1ngt/Trie-public)
+- [ExcelDataSerializer](https://github.com/ds1ngt/ExcelDataSerializer) ([Releases](https://github.com/ds1ngt/ExcelDataSerializer/releases))
 ## 컴투버스 클라이언트 개발
 ### 컴투버스, 2022년 4월 - 2023년 9월
 - 데이터 직렬화 ([MarkDown](./Documents/DataSerializer.md) / [PDF](./Documents/DataSerializer.pdf))
